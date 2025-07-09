@@ -3133,4 +3133,11 @@ extension ChatViewModel: BitchatDelegate {
         }
     }
     
+    // Clean up observers, timers, and subscriptions to prevent memory leaks and callbacks
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        nicknameSaveTimer?.invalidate()
+        deliveryTrackerCancellable?.cancel()
+    }
+    
 }
